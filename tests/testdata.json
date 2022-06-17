@@ -1,0 +1,14 @@
+{
+    "unsafedomains": [
+    ["mdomain", "mpath"],
+    ["malwaredomain:2000", ""],
+    ["malware.domain.com", "?path=malware"],
+    ["malware.domain.com", ""]
+    ],
+    "safedomains": [
+        ["sdomain", "spath"],
+        ["safedomain:2000", ""],
+        ["safe.domain.com", "?path=safe"],
+        ["safe.domain.com", ""]
+    ]
+}

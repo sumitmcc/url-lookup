@@ -1,9 +1,7 @@
 from datetime import datetime
-
 from flask import json, request
 from app import create_app
 from app.db.models.malware import Malware
-
 
 app = create_app()
 
@@ -31,6 +29,7 @@ def is_malware(_hostname_port, _path_query=""):
     ).all()
     if len(data) == 0:
         response = Malware._set_return_value(resp, True)
+        response['url'] = f"http://{_hostname_port}/{_path_query}"
     else:
         response = Malware._set_return_value(resp, False)
     return f"{json.dumps(response)}", 200
@@ -62,6 +61,7 @@ def add_malware():
 
     return f"{json.dumps(response)}", 201
 
+
 @app.delete('/api/1/delete')
 def delete_malware():
     data = request.get_json()
@@ -82,7 +82,3 @@ def delete_malware():
     app.session.commit()
     return json.dumps({'hostname_port': _hostname_port, 'path_query': _path_query}), 200
 
-@app.get('/')
-def index():
-    print("Test")
-    return json.dumps("Edited"), 200
