@@ -1,0 +1,39 @@
+version: '3'
+services:
+#  web:
+#    container_name: flask_app
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - mysql
+#    ports:
+#     - "5123:5000"
+#    restart: always
+#    networks:
+#      - demonetwork
+#    environment:
+#      FLASK_RUN_HOST: 0.0.0.0
+
+  mysql:
+    image: mysql/mysql-server:latest
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: malware
+      MYSQL_ROOT_PASSWORD: cisco.123
+      MYSQL_USER: root
+      MYSQL_ROOT_HOST: 0.0.0.0
+      MYSQL_PASSWORD: cisco.123
+      MYSQL_PORT: 3306
+#    volumes:
+#      - .db:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - demonetwork
+    expose:
+      - "3306"
+
+networks:
+  demonetwork:
+    external: false

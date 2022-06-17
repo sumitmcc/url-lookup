@@ -27,7 +27,7 @@ def is_malware(_hostname_port, _path_query=""):
     data = app.session.query(Malware).filter(
         Malware.host == f"{_hostname_port}",
         Malware.path == f"{_path_query}",
-        not Malware.dtime
+        Malware.dtime.is_(None)
     ).all()
     if len(data) == 0:
         response = Malware._set_return_value(resp, True)
