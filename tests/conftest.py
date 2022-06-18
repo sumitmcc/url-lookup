@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from app.app import app
+from app.wsgi import app
 from app.db.models.malware import Malware
 
 

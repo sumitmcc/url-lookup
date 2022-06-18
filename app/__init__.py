@@ -1,9 +1,10 @@
+import sqlalchemy
 from flask import Flask
 from app.db import db, migrate
 from app.db import config
 from flask_sqlalchemy_session import flask_scoped_session
 from sqlalchemy.orm import sessionmaker
-import sqlalchemy
+from app.routes import bp as route_bp
 
 
 def create_app():
@@ -18,4 +19,5 @@ def create_app():
     db.init_app(flask_app)
     db.create_all()
     migrate.init_app(flask_app, db)
+    flask_app.register_blueprint(route_bp)
     return flask_app

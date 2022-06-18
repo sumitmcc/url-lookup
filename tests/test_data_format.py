@@ -1,6 +1,6 @@
 import pytest
 import json
-from app.app import app
+from app.wsgi import app
 
 with open('tests/testdata.json', 'r') as file:
     data = json.loads(file.read())
