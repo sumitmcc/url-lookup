@@ -1,5 +1,5 @@
 from flask import Flask
-from app.db import db
+from app.db import db, migrate
 from app.db import config
 from flask_sqlalchemy_session import flask_scoped_session
 from sqlalchemy.orm import sessionmaker
@@ -17,4 +17,5 @@ def create_app():
     flask_app.app_context().push()
     db.init_app(flask_app)
     db.create_all()
+    migrate.init_app(flask_app, db)
     return flask_app
