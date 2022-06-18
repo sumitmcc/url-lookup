@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   web:
     container_name: flask_app
     build:
@@ -7,14 +8,9 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mysql
-    ports:
-     - "5123:5000"
     restart: always
     networks:
       - demonetwork
-    environment:
-      FLASK_RUN_HOST: 0.0.0.0
-
 
   mysql:
     image: mysql/mysql-server:latest
@@ -28,15 +24,23 @@ services:
       MYSQL_ROOT_HOST: 0.0.0.0
       MYSQL_PASSWORD: cisco.123
       MYSQL_PORT: 3306
-#    volumes:
-#      - malwarevolume:/var/lib/mysql
     networks:
       - demonetwork
     expose:
       - "3306"
 
+  nginx:
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - web
+    networks:
+      - demonetwork
+    restart: "on-failure"
+
 networks:
   demonetwork:
     external: false
-#volumes:
-#  malwarevolume:

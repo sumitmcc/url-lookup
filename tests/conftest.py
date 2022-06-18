@@ -1,4 +1,3 @@
-import json
 
 import pytest
 from app.wsgi import app
