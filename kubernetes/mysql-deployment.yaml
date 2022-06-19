@@ -13,7 +13,8 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: mysql
-  strategy: {}
+  strategy:
+    type: Recreate
   template:
     metadata:
       annotations:
@@ -29,13 +30,19 @@ spec:
             - name: MYSQL_DATABASE
               value: malware
             - name: MYSQL_PASSWORD
-              value: cisco.123
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
             - name: MYSQL_PORT
               value: "3306"
             - name: MYSQL_ROOT_HOST
               value: 0.0.0.0
             - name: MYSQL_ROOT_PASSWORD
-              value: cisco.123
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
             - name: MYSQL_USER
               value: root
           image: mysql/mysql-server:latest
@@ -43,5 +50,11 @@ spec:
           ports:
             - containerPort: 3306
           resources: {}
-      restartPolicy: Always
+          volumeMounts:
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc-v2
 status: {}

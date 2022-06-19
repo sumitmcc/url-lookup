@@ -2,7 +2,7 @@ FROM python:latest
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY app /app
-COPY tests /app/tests
+COPY tests tests
 ENV MYSQL_USER root
 ENV MYSQL_PASSWORD cisco.123
 ENV MYSQL_HOST mysql

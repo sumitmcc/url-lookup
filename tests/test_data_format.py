@@ -15,14 +15,8 @@ def test_format(setup_data, host, path):
         assert 'is_safe' in data.keys()
         assert data['is_safe'] != ''
         assert data['is_safe'] == True or data['is_safe'] == False
-        assert 'host' in data['data'].keys()
-        assert 'path' in data['data'].keys()
-        assert 'port' in data['data'].keys()
-        assert 'url' in data.keys()
-        assert data['data']['host'] == host or data['data']['host'].split(':')[0]
-        assert data['data']['port'] == '' or data['data']['host'].split(':')[0]
-        assert data['data']['path'] == path
+        assert 'url' in data['data'].keys()
         if data['is_safe']:
-            assert data['url'] == f'http://{host}/{path}'
+            assert data['data']['url'] == f'http://{host}/{path}'
         else:
-            assert data['url'] == ''
+            assert data['data']['url'] == 'Forbidden'

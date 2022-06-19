@@ -25,7 +25,7 @@ spec:
         io.kompose.service: web
     spec:
       containers:
-        - image: schachad/webapp:latest
+        - image: schachad/webapp:v2
           name: flask-app
           resources: {}
           ports:
@@ -34,7 +34,10 @@ spec:
             - name: MYSQL_USER
               value: root
             - name: MYSQL_PASSWORD
-              value: cisco.123
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
             - name: MYSQL_HOST
               value: mysql
             - name: MYSQL_PORT

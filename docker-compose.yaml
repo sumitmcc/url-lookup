@@ -13,7 +13,7 @@ services:
       - demonetwork
 
   mysql:
-    image: mysql/mysql-server:latest
+    image: schachad/mysql-server:latest
     container_name: mysql
     ports:
       - "3306:3306"
