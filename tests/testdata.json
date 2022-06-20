@@ -10,5 +10,12 @@
         ["safedomain:2000", ""],
         ["safe.domain.com", "?path=safe"],
         ["safe.domain.com", ""]
-    ]
+    ],
+    "addone": [["addone", "pathone"]],
+    "addmany": [
+        "add2/path2",
+        "add3/path3",
+        "add4/path4"
+    ],
+    "deleteone": ["mdomain/mpath"]
 }

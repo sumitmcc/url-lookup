@@ -7,17 +7,27 @@ from sqlalchemy.orm import sessionmaker
 from app.routes import bp as route_bp
 
 
+# Flask Application Factory
 def create_app():
     flask_app = Flask(__name__)
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_CONNECTION_URI
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    # Connect to database
     engine = sqlalchemy.create_engine(config.DATABASE_CONNECTION_URI)
     session_factory = sessionmaker(bind=engine)
     _scoped_session = flask_scoped_session(session_factory, flask_app)
     flask_app.session = _scoped_session
     flask_app.app_context().push()
+
+    # Initialise database
     db.init_app(flask_app)
     db.create_all()
+
+    # Support for migrations
     migrate.init_app(flask_app, db)
+
+    # Register the routes blueprint
     flask_app.register_blueprint(route_bp)
+
     return flask_app

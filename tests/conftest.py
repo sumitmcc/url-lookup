@@ -32,5 +32,3 @@ def setup_data():
             app.session.rollback()
         except Exception as e:
             app.session.rollback()
-
-
