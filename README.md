@@ -228,6 +228,7 @@ root@web-77f74dfdc8-4d6fq:/#
 
 ![Kubernetes Model Architecture](images/kubernetesmodel.png)
 
+
 ### Docker model
 
 ![Docker Model Architecture](images/dockermodel.png)
