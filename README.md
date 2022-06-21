@@ -69,7 +69,7 @@ Send a GET request to the route `/api/1/{host-and-port}/{path-and-query}`
 A successful response will be with the information for url and status code `200`  
 
 Example:
-```json
+```python
 curl -X GET http://127.0.0.1:8080/api/1/malware.com/ismal\?host\=true
 
 > {"data": {"url": "http://malware.com/ismal?host=true"}, "is_safe": true}
@@ -84,14 +84,14 @@ curl -X GET http://127.0.0.1:8080/api/1/hijacker.malware/newpath\?host\=attack
 Send a POST request to the route `/api/1/add` with the header `Content-Type`: `application/json`
 
 Body of the post request must contain the url to be added in the following format
-```json
+```python
 {
 	"url": "<URL-TO-ADD>"
 }
 ```
 A successful response will reply with status code `201` if the entry is newly created or with `200` if the url already existed in the database
 Example:
-```json
+```python
 curl --header "Content-Type: application/json" --data '{"url": "newmalware.com:2000/attackpath"}' -X POST http://127.0.0.1:8080/api/1/add
 
 > {"data": {"url": "Forbidden"}, "is_safe": false}
@@ -103,13 +103,13 @@ Send a POST request to the route `/api/1/createmany` with the header `Content-Ty
 
 The body of the post request must contain the url to be added in the following format
 
-```json
+```python
 {"malware_list": ["url1","url2","url3",...]}
 ```
 A successful response will reply with data for only the newly created entries with status code of `201`
 
 Example:
-```json
+```python
 url --header "Content-Type: application/json" \
 --data '{"malware_list": ["malware2:1772/","malware3:2342/nopath","malware4.com:56643/checkhost?newpath=xaas"]}' \
  -X POST http://127.0.0.1:8080/api/1/createmany
@@ -141,13 +141,13 @@ Send a DELETE request to the route `/api/1/delete` with the header `Content-Type
 
 The body of the delete request must contain the url to be added in the following format
 
-```json
+```python
 {"url": "<url-to-be-deleted>"}
 ```
 A successful response will reply with url marked safe with status code of `200`
 
 Example:
-```json
+```python
 curl --header "Content-Type: application/json" --data '{"url": "malware2:1772/"}' -X DELETE http://127.0.0.1:8080/api/1/delete
 
 > {"data": {"url": "http://malware2:1772/"}, "is_safe": true}
@@ -226,8 +226,8 @@ root@web-77f74dfdc8-4d6fq:/#
 
 ### Kubernetes model
 
-![img.png](images/kubernetesmodel.png)
+![Kubernetes Model Architecture](images/kubernetesmodel.png)
 
 ### Docker model
 
-![img.png](images/dockermodel.png)
+![Docker Model Architecture](images/dockermodel.png)
