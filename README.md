@@ -117,18 +117,12 @@ url --header "Content-Type: application/json" \
 > {
   "data": [
     {
-      "dtime": null,
-      "id": 1,
       "url": "malware2:1772/"
     },
     {
-      "dtime": null,
-      "id": 2,
       "url": "malware3:2342/nopath"
     },
     {
-      "dtime": null,
-      "id": 3,
       "url": "malware4.com:56643/checkhost?newpath=xaas"
     }
   ]
