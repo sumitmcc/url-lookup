@@ -53,6 +53,7 @@ spec:
           volumeMounts:
           - name: mysql-persistent-storage
             mountPath: /var/lib/mysql
+          imagePullPolicy: Always
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:

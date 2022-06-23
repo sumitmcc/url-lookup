@@ -25,8 +25,6 @@ def test_createmany():
         response_items = []
         for item in json.loads(res.data)['data']:
             response_items.append(item['url'])
-            assert item['dtime'] is None
-            assert isinstance(item['id'], int)
         for item in data['addmany']:
             assert item in response_items
 

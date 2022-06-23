@@ -5,4 +5,3 @@ from app import create_app
 # and serves as an entrypoint to the application
 # All other modules should import app from flask.current_app
 app = create_app()
-
